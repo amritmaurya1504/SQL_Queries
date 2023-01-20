@@ -1,0 +1,36 @@
+CREATE DATABASE COMPANY;
+USE COMPANY;
+CREATE TABLE DEPT1 (
+	empID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255),
+    role VARCHAR(255)
+);
+
+CREATE TABLE DEPT2 (
+	empID INT NOT NULL PRIMARY KEY,
+    name VARCHAR(255),
+    role VARCHAR(255)
+);
+
+INSERT INTO DEPT1 (empID, name, role) VALUES
+	(1,'A','Engineer'),
+    (2,'B','Salesman'),
+    (3,'C','Manager'),
+    (4,'D','Salesman'),
+    (5,'E','Engineer');
+    
+INSERT INTO DEPT2 (empID, name, role) VALUES
+	(3,'C','Manager'),
+    (6,'F','Marketing'),
+    (7,'G','Salesman');
+
+-- UNION
+SELECT * FROM DEPT1 UNION SELECT * FROM DEPT2;
+SELECT * FROM DEPT1 WHERE role='Salesman'
+UNION
+SELECT * FROM DEPT2 WHERE role='Salesman';
+-- INTERSECTION (EMALUATE)
+SELECT DEPT1.* FROM DEPT1 INNER JOIN DEPT2 USING(empID);
+-- MINUS
+SELECT DEPT1.* FROM DEPT1 LEFT JOIN DEPT2 USING(empID) WHERE DEPT2.empID is null;
+    
